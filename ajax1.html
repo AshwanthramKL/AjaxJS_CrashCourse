@@ -50,7 +50,10 @@
         //         console.log(this.responseText);
         //     }
         // }
-
+        
+        xhr.onerror = function () {
+            console.log('Request error...');
+        }
 
         // Sends the request
         xhr.send();
