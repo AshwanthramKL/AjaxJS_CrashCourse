@@ -8,11 +8,15 @@
 </head>
 <body>
     <button id="button">Get text file</button>
+    <div id="text-space"></div>
 </body>
 
 <script>
     // Create event listener
-    document.getElementById('button').addEventListener('click', loadText);
+    var clickButton = document.getElementById('button');
+    clickButton.addEventListener('click', loadText);
+
+    var textSpace = document.querySelector("#text-space");
 
     function loadText(e){
         // Create XHR Object
@@ -40,7 +44,9 @@
         // console.log('READYSTATE: ', xhr.readyState);
             if(this.status == 200)
             {
-                console.log(this.responseText);
+                // console.log(this.responseText);
+                textSpace.innerHTML = this.response;
+                clickButton.style.display = 'none';
             }
         }
 
