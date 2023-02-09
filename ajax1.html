@@ -32,7 +32,7 @@
         // 4 - request finished and response is ready
 
         // OPEN - type, url, async
-        xhr.open('GET', './sample.txt', true);
+        xhr.open('GET', './sample12.txt', true);
         // console.log('READYSTATE: ', xhr.readyState);
 
         // OPTIONAL - used for loaders
@@ -47,6 +47,15 @@
                 // console.log(this.responseText);
                 textSpace.innerHTML = this.response;
                 clickButton.style.display = 'none';
+            }
+
+            else if(this.status == 404)
+            {
+                textSpace.innerHTML = 'NOT FOUND!!!';
+                textSpace.style.fontSize = 'xxx-large';
+                textSpace.style.margin = '* auto';
+                clickButton.style.display = 'none';
+
             }
         }
 
