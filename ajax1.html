@@ -18,20 +18,31 @@
         // Create XHR Object
         var xhr = new XMLHttpRequest();
         // console.log(xhr);
+        console.log(xhr.readyState);
         
         // OPEN - type, url, async
         xhr.open('GET', './sample.txt', true);
-        
+        console.log(xhr.readyState);
+
         xhr.onload = function () {
+        console.log(xhr.readyState);
             if(this.status == 200)
             {
                 console.log(this.responseText);
             }
         }
 
+        // xhr.onreadystatechange = function() {
+        //     console.log(this.readyState);
+        //     if(this.readyState == 4 && this.status == 200){
+        //         console.log(this.responseText);
+        //     }
+        // }
+
+
         // Sends the request
         xhr.send();
     }
-    
+
 </script>
 </html>
