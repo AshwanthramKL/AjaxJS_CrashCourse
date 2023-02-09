@@ -18,14 +18,14 @@
         // Create XHR Object
         var xhr = new XMLHttpRequest();
         // console.log(xhr);
-        console.log(xhr.readyState);
+        console.log('READYSTATE: ', xhr.readyState);
         
         // OPEN - type, url, async
         xhr.open('GET', './sample.txt', true);
-        console.log(xhr.readyState);
+        console.log('READYSTATE: ', xhr.readyState);
 
         xhr.onload = function () {
-        console.log(xhr.readyState);
+        console.log('READYSTATE: ', xhr.readyState);
             if(this.status == 200)
             {
                 console.log(this.responseText);
