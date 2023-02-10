@@ -15,7 +15,7 @@
 
         function getData(){
             var xhr = new XMLHttpRequest();
-            xhr.open('GET', './process.php', true);
+            xhr.open('GET', './process.php?name=Kashik', true);
 
             xhr.onload = function() {
                 console.log(this.responseText);
