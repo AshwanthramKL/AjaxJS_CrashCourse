@@ -23,6 +23,8 @@
         var usersRegion = document.querySelector('#users');
 
         button1.addEventListener('click', getUser);
+        button2.addEventListener('click', getUsers);
+
 
         function getUser(e) {
             var xhr = new XMLHttpRequest();
@@ -55,6 +57,43 @@
 
             xhr.send();
         }
+
+        function getUsers(e) {
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', './users.json', true);
+
+            xhr.onload = function () {
+                if( this.status == 200){
+                    console.log(this.responseText);
+                    // console.log(this.responseText.id); // Can't access JSON data fields
+                    var users = JSON.parse(this.responseText); // Have to parse the response text into JSON
+                    // console.log(users.id);
+
+                    var output = '';
+
+                    for(i in users){
+                        output += `<ul>
+                        <li>ID: ${users[i].id}</li>
+                        <li>Name: ${users[i].name}</li>
+                        <li>Email: ${users[i].email}</li>
+                        </ul>`;
+                    }
+                    
+
+                    
+                    document.getElementsByTagName('h1')[1].style.display = 'block';
+                    usersRegion.style.display = 'block';
+                    usersRegion.innerHTML = output;
+                    // document.getElementsByTagName('h1')[0].style.display = 'none';
+                    // usersRegion.style.display = 'block';
+
+
+                }
+            }
+
+            xhr.send();
+        }
+
     </script>
 </body>
 </html>
