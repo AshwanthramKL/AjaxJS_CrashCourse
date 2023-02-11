@@ -8,10 +8,24 @@
 </head>
 <body>
     <button id="getDetails">Click me</button>
+    <hr>
+    <h1>GET FORM</h1>
+    <form method="getForm">
+        <input type="text" name="name">
+        <input type="submit" value="Submit">
+    </form>
+
+    <h1>AJAX GET FORM</h1>
+    <form id="getForm">
+        <input type="text" name="name" id="name1">
+        <input type="submit" value="Submit">
+    </form>
 
     <script>
         var clickButton = document.querySelector('#getDetails');
         clickButton.addEventListener('click', getData);
+
+        document.querySelector('#getForm').addEventListener('submit', getName);
 
         function getData(){
             var xhr = new XMLHttpRequest();
@@ -24,6 +38,20 @@
             xhr.send();
         }
 
+        function getName(e) {
+            e.preventDefault();
+
+            var name = document.getElementById('name1').value;
+
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', 'process.php?name='+name, true);
+
+            xhr.onload = function () {
+                console.log(this.responseText);
+            }
+
+            xhr.send();
+        }
         
     </script>
 </body>
