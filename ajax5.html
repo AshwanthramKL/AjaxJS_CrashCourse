@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajax 5 - Fetch from PHP MySQL</title>
+</head>
+<body>
+    <button id="button1">Get users</button>
+    <br><br>
+    <h1 style="display: none;">Users</h1>
+    <div id="users" style="display: none;"></div>
+    
+    <script>
+        var button1 = document.querySelector('#button1');
+        var usersRegion = document.querySelector('#users');
+
+        button1.addEventListener('click', getUsers);
+
+
+        function getUsers(e) {
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', './users.php', true);
+
+            xhr.onload = function () {
+                if( this.status == 200){
+                    console.log(this.responseText);
+                    // console.log(this.responseText.id); // Can't access JSON data fields
+                    var users = JSON.parse(this.responseText); // Have to parse the response text into JSON
+                    // console.log(users.id);
+
+                    var output = '';
+
+                    for(i in users){
+                        output += `<ul>
+                        <li>ID: ${users[i].id}</li>
+                        <li>Name: ${users[i].name}</li>
+                        </ul>`;
+                    }
+                    
+
+                    
+                    document.getElementsByTagName('h1')[0].style.display = 'block';
+                    usersRegion.style.display = 'block';
+                    usersRegion.innerHTML = output;
+                    // document.getElementsByTagName('h1')[0].style.display = 'none';
+                    // usersRegion.style.display = 'block';
+
+
+                }
+            }
+
+            xhr.send();
+        }
+
+    </script>
+</body>
+</html>
